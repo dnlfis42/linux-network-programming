@@ -1,0 +1,11 @@
+BasedOnStyle: LLVM
+
+# 들여쓰기
+IndentWidth: 4
+AccessModifierOffset: -4
+
+# 정렬
+AlignAfterOpenBracket: BlockIndent
+
+# 포인터
+PointerAlignment: Left
