@@ -12,5 +12,6 @@ add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
 # -------- Sub-projects ---------
 add_subdirectory(01_socket)
+add_subdirectory(02_address)
 
 enable_testing()
