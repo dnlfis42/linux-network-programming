@@ -15,9 +15,9 @@ add_link_options(-fsanitize=address,undefined)
 enable_testing()
 
 # -------- Sub-projects ---------
-add_subdirectory(01-socket)
-add_subdirectory(02-address)
+add_subdirectory(00-socket)
+add_subdirectory(01-address)
+add_subdirectory(02-dns)
 add_subdirectory(03-01-tcp-basic)
 add_subdirectory(04-01-udp-basic)
-add_subdirectory(05-dns)
-add_subdirectory(06-socket-option)
+add_subdirectory(05-socket-option)

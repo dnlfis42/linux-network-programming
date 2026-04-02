@@ -36,12 +36,25 @@ ctest --test-dir build/01-socket/test -V
 
 ## 구조
 
-| 디렉토리        | 주제             | 주요 등장 함수                                                              |
-| --------------- | ---------------- | --------------------------------------------------------------------------- |
-| 01-socket       | 소켓 생성과 종료 | `socket()`, `close()`                                                       |
-| 02-address      | 주소 체계와 변환 | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |
-| 03-01-tcp-basic | TCP 연결         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |
-| 04-01-udp-basic | UDP 통신         | `sendto()`, `recvfrom()`                                                    |
-| 05-dns          | 이름 해석        | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |
+| 디렉토리           | 주제             | 주요 등장 함수                                                              | 완료 |
+| ------------------ | ---------------- | --------------------------------------------------------------------------- | :--: |
+| 00-socket          | 소켓 생성과 종료 | `socket()`, `close()`                                                       |  O   |
+| 01-address         | 주소 체계와 변환 | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |      |
+| 02-dns             | 이름 해석        | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |      |
+| 03-01-tcp-basic    | TCP 연결         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |      |
+| 03-02-tcp-echo     |                  |                                                                             |      |
+| 03-03-tcp-chat     |                  |                                                                             |      |
+| 04-01-udp-basic    | UDP 통신         | `sendto()`, `recvfrom()`                                                    |      |
+| 04-02-udp-echo     |                  |                                                                             |      |
+| 04-03-udp-chat     |                  |                                                                             |      |
+| 05-socket-option   | 소켓 옵션        | `setsockopt()`, `getsockopt()`                                              |      |
+| 06-socket-error    |                  |                                                                             |      |
+| 07-signal          |                  |                                                                             |      |
+| 08-nonblocking     |                  |                                                                             |      |
+| 09-summary         |                  |                                                                             |      |
+| 10-io-multiplexing |                  |                                                                             |      |
+| 11-select          |                  |                                                                             |      |
+| 12-poll            |                  |                                                                             |      |
+| 13-epoll           |                  |                                                                             |      |
 
 각 디렉토리는 `test/` 폴더에서 GTest로 함수와 구조체를 직접 사용해보는 방식으로 구성.
