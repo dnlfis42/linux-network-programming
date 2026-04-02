@@ -55,6 +55,6 @@ ctest --test-dir build/00-socket/test -V
 | 03-03-tcp-select   | TCP 채팅 서버    |                                                                             |      |
 | 04-03-udp-select   | UDP 채팅 서버    |                                                                             |      |
 | 12-poll            | poll             | `poll()`                                                                    |      |
-| 13-epoll           | epoll            | `epoll_create()`, `epoll_ctl()`, `epoll_wait()`                             |      |
+| 13-epoll           | epoll            | `epoll_create()`, `epoll_ctl()`, `epoll_wait()`                             |  O   |
 
 각 디렉토리는 `test/` 폴더에서 GTest로 함수와 구조체를 직접 사용해보는 방식으로 구성.
