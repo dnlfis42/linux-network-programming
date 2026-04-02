@@ -9,3 +9,6 @@ AlignAfterOpenBracket: BlockIndent
 
 # 포인터
 PointerAlignment: Left
+
+# 템플릿
+AlwaysBreakTemplateDeclarations: true
