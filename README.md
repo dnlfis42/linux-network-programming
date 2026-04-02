@@ -48,12 +48,12 @@ ctest --test-dir build/00-socket/test -V
 | 04-02-udp-echo     | UDP 에코 서버    |                                                                             |      |
 | 06-socket-error    | 소켓 에러 처리   |                                                                             |  O   |
 | 07-signal          | 시그널 처리      | `signal()`, `sigaction()`                                                   |  O   |
-| 08-nonblocking     | 논블로킹 소켓    | `fcntl()`, `O_NONBLOCK`                                                     |      |
+| 08-nonblocking     | 논블로킹 소켓    | `fcntl()`, `ioctl()`                                                        |  O   |
 | 09-summary         | 총망라           |                                                                             |      |
 | 10-io-multiplexing | I/O 멀티플렉싱   |                                                                             |      |
 | 11-select          | select           | `select()`, `FD_SET()`                                                      |      |
-| 03-03-tcp-chat     | TCP 채팅 서버    |                                                                             |      |
-| 04-03-udp-chat     | UDP 채팅 서버    |                                                                             |      |
+| 03-03-tcp-select   | TCP 채팅 서버    |                                                                             |      |
+| 04-03-udp-select   | UDP 채팅 서버    |                                                                             |      |
 | 12-poll            | poll             | `poll()`                                                                    |      |
 | 13-epoll           | epoll            | `epoll_create()`, `epoll_ctl()`, `epoll_wait()`                             |      |
 
