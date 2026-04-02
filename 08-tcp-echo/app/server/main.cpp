@@ -19,7 +19,7 @@ int main() {
     struct sigaction sa{};
     sa.sa_handler = handle_signal;
     sigemptyset(&sa.sa_mask);
-    sa.sa_flags = 0;  // SA_RESTART 없음 → recv()가 EINTR 반환
+    sa.sa_flags = 0; // SA_RESTART 없음 → recv()가 EINTR 반환
     sigaction(SIGINT, &sa, nullptr);
     sigaction(SIGTERM, &sa, nullptr);
     // 소켓 생성
