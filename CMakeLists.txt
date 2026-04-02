@@ -10,8 +10,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
+enable_testing()
+
 # -------- Sub-projects ---------
 add_subdirectory(01_socket)
 add_subdirectory(02_address)
-
-enable_testing()
+add_subdirectory(03-01-tcp-basic)
