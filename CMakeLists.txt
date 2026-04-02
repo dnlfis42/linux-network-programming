@@ -9,6 +9,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+add_compile_options(-fsanitize=address,undefined)
+add_link_options(-fsanitize=address,undefined)
 
 enable_testing()
 
@@ -17,3 +19,4 @@ add_subdirectory(01-socket)
 add_subdirectory(02-address)
 add_subdirectory(03-01-tcp-basic)
 add_subdirectory(04-01-udp-basic)
+add_subdirectory(05-dns)
