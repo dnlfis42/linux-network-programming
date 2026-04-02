@@ -2,13 +2,26 @@
 #include "error.hpp"
 
 #include <arpa/inet.h>
-#include <asm-generic/socket.h>
+#include <csignal>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
 
+volatile sig_atomic_t running = 1;
+
+void handle_signal(int) { running = 0; }
+
 int main() {
+    // SIGPIPE 무시 — 클라이언트가 끊어도 서버가 죽지 않게
+    signal(SIGPIPE, SIG_IGN);
+    // SIGINT/SIGTERM — graceful shutdown (SA_RESTART 없이)
+    struct sigaction sa{};
+    sa.sa_handler = handle_signal;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;  // SA_RESTART 없음 → recv()가 EINTR 반환
+    sigaction(SIGINT, &sa, nullptr);
+    sigaction(SIGTERM, &sa, nullptr);
     // 소켓 생성
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd == -1) {
@@ -68,23 +81,26 @@ int main() {
         "\nport: ", ntohs(client_addr.sin_port)
     );
     //
-    bool is_running = true;
-    while (is_running) {
+    while (running) {
         char buf[1024]{};
+        // 메시지 송신
         ssize_t r_recv = recv(client_fd, buf, sizeof(buf), 0);
         if (r_recv == -1) {
+            if (errno == EINTR) {
+                continue; // 시그널에 의한 중단, 재시도
+            }
             log_err("recv() failed");
-            is_running = false;
+            break;
         } else if (r_recv == 0) {
             log_info("client disconnected");
-            is_running = false;
+            break;
         } else {
             log_info("recv msg\nlen: ", r_recv, "\nmsg: ", buf);
             // 재전송
-            ssize_t r_send = send(client_fd, buf, r_recv, 0);
+            ssize_t r_send = send(client_fd, buf, r_recv, MSG_NOSIGNAL);
             if (r_send == -1) {
                 log_err("send() failed");
-                is_running = false;
+                break;
             } else {
                 log_info(
                     "send msg\nrecv size: ", r_recv, "\nsend size: ", r_send
@@ -92,6 +108,7 @@ int main() {
             }
         }
     }
+    log_info("server shutting down");
     // linger 설정
     linger lg{1, 0};
     if (setsockopt(client_fd, SOL_SOCKET, SO_LINGER, &lg, sizeof(lg)) == -1) {
