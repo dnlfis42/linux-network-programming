@@ -13,6 +13,6 @@ add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 enable_testing()
 
 # -------- Sub-projects ---------
-add_subdirectory(01_socket)
-add_subdirectory(02_address)
+add_subdirectory(01-socket)
+add_subdirectory(02-address)
 add_subdirectory(03-01-tcp-basic)
