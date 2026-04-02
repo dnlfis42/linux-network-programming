@@ -39,15 +39,15 @@ ctest --test-dir build/01-socket/test -V
 | 디렉토리           | 주제             | 주요 등장 함수                                                              | 완료 |
 | ------------------ | ---------------- | --------------------------------------------------------------------------- | :--: |
 | 00-socket          | 소켓 생성과 종료 | `socket()`, `close()`                                                       |  O   |
-| 01-address         | 주소 체계와 변환 | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |      |
-| 02-dns             | 이름 해석        | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |      |
-| 03-01-tcp-basic    | TCP 연결         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |      |
+| 01-address         | 주소 체계와 변환 | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |  O   |
+| 02-dns             | 이름 해석        | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |  O   |
+| 03-01-tcp-basic    | TCP 연결         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |  O   |
 | 03-02-tcp-echo     |                  |                                                                             |      |
 | 03-03-tcp-chat     |                  |                                                                             |      |
-| 04-01-udp-basic    | UDP 통신         | `sendto()`, `recvfrom()`                                                    |      |
+| 04-01-udp-basic    | UDP 통신         | `sendto()`, `recvfrom()`                                                    |  O   |
 | 04-02-udp-echo     |                  |                                                                             |      |
 | 04-03-udp-chat     |                  |                                                                             |      |
-| 05-socket-option   | 소켓 옵션        | `setsockopt()`, `getsockopt()`                                              |      |
+| 05-socket-option   | 소켓 옵션        | `setsockopt()`, `getsockopt()`                                              |  O   |
 | 06-socket-error    |                  |                                                                             |      |
 | 07-signal          |                  |                                                                             |      |
 | 08-nonblocking     |                  |                                                                             |      |
