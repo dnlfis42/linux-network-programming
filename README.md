@@ -28,10 +28,10 @@ cmake --build build
 ctest --test-dir build
 
 # 프로젝트별 테스트
-ctest --test-dir build/01-socket/test --output-on-failure
+ctest --test-dir build/00-socket/test --output-on-failure
 
 # 상세 출력
-ctest --test-dir build/01-socket/test -V
+ctest --test-dir build/00-socket/test -V
 ```
 
 ## 구조
@@ -47,7 +47,7 @@ ctest --test-dir build/01-socket/test -V
 | 03-02-tcp-echo     | TCP 에코 서버    |                                                                             |  O   |
 | 04-02-udp-echo     | UDP 에코 서버    |                                                                             |      |
 | 06-socket-error    | 소켓 에러 처리   |                                                                             |  O   |
-| 07-signal          | 시그널 처리      | `signal()`, `sigaction()`                                                   |      |
+| 07-signal          | 시그널 처리      | `signal()`, `sigaction()`                                                   |  O   |
 | 08-nonblocking     | 논블로킹 소켓    | `fcntl()`, `O_NONBLOCK`                                                     |      |
 | 09-summary         | 총망라           |                                                                             |      |
 | 10-io-multiplexing | I/O 멀티플렉싱   |                                                                             |      |
