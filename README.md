@@ -41,20 +41,20 @@ ctest --test-dir build/01-socket/test -V
 | 00-socket          | 소켓 생성과 종료 | `socket()`, `close()`                                                       |  O   |
 | 01-address         | 주소 체계와 변환 | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |  O   |
 | 02-dns             | 이름 해석        | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |  O   |
-| 03-01-tcp-basic    | TCP 연결         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |  O   |
-| 03-02-tcp-echo     |                  |                                                                             |      |
-| 03-03-tcp-chat     |                  |                                                                             |      |
+| 03-01-tcp-basic    | TCP 통신         | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |  O   |
+| 03-02-tcp-echo     | TCP 에코 서버    |                                                                             |  O   |
+| 03-03-tcp-chat     | TCP 채팅 서버    |                                                                             |      |
 | 04-01-udp-basic    | UDP 통신         | `sendto()`, `recvfrom()`                                                    |  O   |
-| 04-02-udp-echo     |                  |                                                                             |      |
-| 04-03-udp-chat     |                  |                                                                             |      |
+| 04-02-udp-echo     | UDP 에코 서버    |                                                                             |      |
+| 04-03-udp-chat     | UDP 채팅 서버    |                                                                             |      |
 | 05-socket-option   | 소켓 옵션        | `setsockopt()`, `getsockopt()`                                              |  O   |
-| 06-socket-error    |                  |                                                                             |      |
-| 07-signal          |                  |                                                                             |      |
-| 08-nonblocking     |                  |                                                                             |      |
-| 09-summary         |                  |                                                                             |      |
-| 10-io-multiplexing |                  |                                                                             |      |
-| 11-select          |                  |                                                                             |      |
-| 12-poll            |                  |                                                                             |      |
-| 13-epoll           |                  |                                                                             |      |
+| 06-socket-error    | 소켓 에러 처리   |                                                                             |      |
+| 07-signal          | 시그널 처리      | `signal()`, `sigaction()`                                                   |      |
+| 08-nonblocking     | 논블로킹 소켓    | `fcntl()`, `O_NONBLOCK`                                                     |      |
+| 09-summary         | 총망라           |                                                                             |      |
+| 10-io-multiplexing | I/O 멀티플렉싱   |                                                                             |      |
+| 11-select          | select           | `select()`, `FD_SET()`                                                      |      |
+| 12-poll            | poll             | `poll()`                                                                    |      |
+| 13-epoll           | epoll            | `epoll_create()`, `epoll_ctl()`, `epoll_wait()`                             |      |
 
 각 디렉토리는 `test/` 폴더에서 GTest로 함수와 구조체를 직접 사용해보는 방식으로 구성.

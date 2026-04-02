@@ -1,0 +1,105 @@
+#include "config.hpp"
+#include "error.hpp"
+
+#include <arpa/inet.h>
+#include <asm-generic/socket.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main() {
+    // 소켓 생성
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (fd == -1) {
+        log_err("socket() failed");
+        return 0;
+    }
+    // 주소 설정
+    sockaddr_in addr{};
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(PORT);
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    // 소켓-주소 바인딩
+    if (bind(fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == -1) {
+        log_err("bind() failed");
+        close(fd);
+        return 0;
+    }
+    // 리슨
+    if (listen(fd, SOMAXCONN) == -1) {
+        log_err("listen() failed");
+        close(fd);
+        return 0;
+    }
+    // 서버 IP 문자열 변환
+    char server_ip[INET_ADDRSTRLEN]{};
+    if (inet_ntop(AF_INET, &addr.sin_addr, server_ip, INET_ADDRSTRLEN) ==
+        nullptr) {
+        log_err("inet_ntop() failed");
+        close(fd);
+        return 0;
+    }
+    // 서버 동작 로그
+    log_info("server listening on ", server_ip, ":", PORT);
+    // 클라이언트 주소 공간
+    sockaddr_in client_addr{};
+    socklen_t addr_len = sizeof(client_addr);
+    // 클라이언트 접속
+    int client_fd =
+        accept(fd, reinterpret_cast<sockaddr*>(&client_addr), &addr_len);
+    if (client_fd == -1) {
+        log_err("accept() failed");
+        close(fd);
+        return 0;
+    }
+    // 클라이언트 IP 문자열 변환
+    char client_ip[INET_ADDRSTRLEN]{};
+    if (inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, INET_ADDRSTRLEN) ==
+        nullptr) {
+        log_err("inet_ntop(client) failed");
+        close(client_fd);
+        close(fd);
+        return 0;
+    }
+    // 클라이언트 정보 로그
+    log_info(
+        "client connected\nfd  : ", client_fd, "\naddr: ", client_ip,
+        "\nport: ", ntohs(client_addr.sin_port)
+    );
+    //
+    bool is_running = true;
+    while (is_running) {
+        char buf[1024]{};
+        ssize_t r_recv = recv(client_fd, buf, sizeof(buf), 0);
+        if (r_recv == -1) {
+            log_err("recv() failed");
+            is_running = false;
+        } else if (r_recv == 0) {
+            log_info("client disconnected");
+            is_running = false;
+        } else {
+            log_info("recv msg\nlen: ", r_recv, "\nmsg: ", buf);
+            // 재전송
+            ssize_t r_send = send(client_fd, buf, r_recv, 0);
+            if (r_send == -1) {
+                log_err("send() failed");
+                is_running = false;
+            } else {
+                log_info(
+                    "send msg\nrecv size: ", r_recv, "\nsend size: ", r_send
+                );
+            }
+        }
+    }
+    // linger 설정
+    linger lg{1, 0};
+    if (setsockopt(client_fd, SOL_SOCKET, SO_LINGER, &lg, sizeof(lg)) == -1) {
+        log_err("setsockopt(client,linger) failed");
+    }
+    // fd 닫기
+    close(client_fd);
+    close(fd);
+    // 프로그램 종료
+    return 0;
+}
