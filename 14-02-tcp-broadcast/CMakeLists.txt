@@ -1,0 +1,5 @@
+add_executable(epoll_broadcast_server app/server/main.cpp)
+add_executable(epoll_broadcast_client app/client/main.cpp)
+
+target_include_directories(epoll_broadcast_server PRIVATE include)
+target_include_directories(epoll_broadcast_client PRIVATE include)

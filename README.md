@@ -36,24 +36,24 @@ ctest --test-dir build/00-socket/test -V
 
 ## 구조
 
-| 디렉터리           | 주제                     | 주요 등장 함수                                                              | 완료 |
-| ------------------ | ------------------------ | --------------------------------------------------------------------------- | :--: |
-| 00-socket          | 소켓 생성과 종료         | `socket()`, `close()`                                                       |  O   |
-| 01-address         | 주소 체계와 변환         | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |  O   |
-| 02-dns             | 이름 해석                | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |  O   |
-| 03-tcp             | TCP 통신                 | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |  O   |
-| 04-udp             | UDP 통신                 | `sendto()`, `recvfrom()`                                                    |  O   |
-| 05-option          | 소켓 옵션                | `setsockopt()`, `getsockopt()`                                              |  O   |
-| 06-error           | 소켓 에러 처리           | `strerror()`, `perror()`, `gai_strerror()`                                  |  O   |
-| 07-signal          | 시그널 처리              | `signal()`, `sigaction()`                                                   |  O   |
-| 08-tcp-echo        | TCP 에코 서버            |                                                                             |  O   |
-| 09-udp-echo        | UDP 에코 서버            |                                                                             |      |
-| 10-nonblocking     | 논블로킹 소켓            | `fcntl()`, `ioctl()`                                                        |  O   |
-| 11-io-multiplexing | I/O 멀티플렉싱           |                                                                             |  O   |
-| 12-select          | select                   | `select()`, `FD_SET()`                                                      |      |
-| 13-poll            | poll                     | `poll()`                                                                    |      |
-| 14-00-epoll        | epoll                    | `epoll_create1()`, `epoll_ctl()`, `epoll_wait()`                            |  O   |
-| 14-01-tcp-echo     | epoll 기반 TCP 에코 서버 |                                                                             |  O   |
-| 14-02-tcp-chat     | epoll 기반 TCP 채팅 서버 |                                                                             |      |
+| 디렉터리            | 주제                        | 주요 등장 함수                                                              | 완료 |
+| ------------------- | --------------------------- | --------------------------------------------------------------------------- | :--: |
+| 00-socket           | 소켓 생성과 종료            | `socket()`, `close()`                                                       |  O   |
+| 01-address          | 주소 체계와 변환            | `htons()`, `htonl()`, `ntohs()`, `ntohl()`,<br>`inet_pton()`, `inet_ntop()` |  O   |
+| 02-dns              | 이름 해석                   | `getaddrinfo()`, `getnameinfo()`, `freeaddrinfo()`                          |  O   |
+| 03-tcp              | TCP 통신                    | `bind()`, `listen()`, `accept()`, `connect()`,<br>`send()`, `recv()`        |  O   |
+| 04-udp              | UDP 통신                    | `sendto()`, `recvfrom()`                                                    |  O   |
+| 05-option           | 소켓 옵션                   | `setsockopt()`, `getsockopt()`                                              |  O   |
+| 06-error            | 소켓 에러 처리              | `strerror()`, `perror()`, `gai_strerror()`                                  |  O   |
+| 07-signal           | 시그널 처리                 | `signal()`, `sigaction()`                                                   |  O   |
+| 08-tcp-echo         | TCP 에코 서버               |                                                                             |  O   |
+| 09-udp-echo         | UDP 에코 서버               |                                                                             |      |
+| 10-nonblocking      | 논블로킹 소켓               | `fcntl()`, `ioctl()`                                                        |  O   |
+| 11-io-multiplexing  | I/O 멀티플렉싱              |                                                                             |  O   |
+| 12-select           | select                      | `select()`, `FD_SET()`                                                      |      |
+| 13-poll             | poll                        | `poll()`                                                                    |      |
+| 14-00-epoll         | epoll                       | `epoll_create1()`, `epoll_ctl()`, `epoll_wait()`                            |  O   |
+| 14-01-tcp-echo      | epoll 기반 TCP 에코 서버    |                                                                             |  O   |
+| 14-02-tcp-broadcast | epoll 기반 TCP 브로드캐스트 |                                                                             |  O   |
 
 각 디렉토리는 `test/` 폴더에서 GTest로 함수와 구조체를 직접 사용해보는 방식으로 구성.
