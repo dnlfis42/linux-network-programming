@@ -53,7 +53,7 @@ ctest --test-dir build/00-socket/test -V
 | 12-select          | select                   | `select()`, `FD_SET()`                                                      |      |
 | 13-poll            | poll                     | `poll()`                                                                    |      |
 | 14-00-epoll        | epoll                    | `epoll_create1()`, `epoll_ctl()`, `epoll_wait()`                            |  O   |
-| 14-01-tcp-echo     | epoll 기반 TCP 에코 서버 |                                                                             |      |
+| 14-01-tcp-echo     | epoll 기반 TCP 에코 서버 |                                                                             |  O   |
 | 14-02-tcp-chat     | epoll 기반 TCP 채팅 서버 |                                                                             |      |
 
 각 디렉토리는 `test/` 폴더에서 GTest로 함수와 구조체를 직접 사용해보는 방식으로 구성.
